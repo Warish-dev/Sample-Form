@@ -185,3 +185,16 @@
 .option-button.selected:hover {
   background-color: #0056b3;
 }
+
+
+.input-error {
+  border: 2px solid red;
+  outline: none;
+}
+
+.error {
+  color: red;
+  font-size: 0.875rem;
+  margin-top: 4px;
+  display: block;
+}

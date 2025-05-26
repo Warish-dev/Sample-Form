@@ -1,4 +1,5 @@
 
+
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import './PostAdForm.css';
@@ -117,15 +118,15 @@ export default function PostAdForm() {
 
         <div className="form-group">
           <label>Ad title *</label>
-          <input {...register('title', { required: true })} maxLength={70} />
-          {errors.title && <span className="error">Ad title is required</span>}
+          <input {...register('title', { required: true, maxLength: { value: 30, message: 'Maximum 30 characters allowed' } })} />
+          {errors.title && <span className="error">{errors.title.message || 'Ad title is required'}</span>}
           <small>Mention the key features of your item (e.g. brand, model, age, type)</small>
         </div>
 
         <div className="form-group">
           <label>Description *</label>
-          <textarea {...register('description', { required: true })} maxLength={4096}></textarea>
-          {errors.description && <span className="error">Description is required</span>}
+          <textarea {...register('description', { required: true,  maxLength: { value: 200, message: 'Maximum 200 characters allowed' } })} maxLength={4096}></textarea>
+          {errors.description && <span className="error">{errors.description.message || 'Description is required'}</span>}
           <small>Include condition, features and reason for selling</small>
         </div>
 
@@ -185,10 +186,10 @@ export default function PostAdForm() {
           <label>Mobile Phone Number *</label>
           <input
             type="tel"
-            {...register('mobile', { required: true })}
+            {...register('mobile', { required: true, pattern: { value: /^[0-9]{10}$/, message: 'Enter a valid 10-digit number' } })}
             placeholder="+91"
           />
-          {errors.mobile && <span className="error">This field is mandatory</span>}
+          {errors.mobile && <span className="error">{errors.mobile.message || 'This field is mandatory'}</span>}
         </div>
 
         <button type="submit" className="submit-button">Submit</button>
